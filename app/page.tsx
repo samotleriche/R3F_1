@@ -5,8 +5,13 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Experience from "./Experience";
 import * as THREE from "three";
+import { useControls } from "leva";
 
 export default function Home() {
+  const { position } = useControls({
+    position: -2,
+  });
+
   return (
     <main>
       <Canvas

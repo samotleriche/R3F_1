@@ -9,9 +9,15 @@ import {
   Text,
   Float,
   MeshReflectorMaterial,
+  MeshWobbleMaterial,
+  MeshDistortMaterial,
+  PointMaterial,
 } from "@react-three/drei";
+import { useControls } from "leva";
 
 const Experience = () => {
+  const { position } = useControls({});
+
   const box = React.useRef();
   const groupRef = React.useRef();
 
@@ -83,6 +89,22 @@ const Experience = () => {
           <meshNormalMaterial side={THREE.DoubleSide} />
         </Text>
       </Float>
+      <mesh position={[-1, 3, 0]}>
+        <boxGeometry />
+        <MeshWobbleMaterial color={"purple"} speed={5} factor={2} />
+      </mesh>
+      <mesh position={[2, 4, 0]}>
+        <boxGeometry />
+        <MeshDistortMaterial />
+      </mesh>
+      <points>
+        <PointMaterial
+          vertexColors
+          size={1}
+          sizeAttenuation={false}
+          depthWrite={false}
+        />
+      </points>
     </group>
   );
 };

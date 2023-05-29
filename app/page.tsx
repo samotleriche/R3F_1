@@ -24,7 +24,7 @@ export default function Home() {
           far: 200,
         }}
       >
-        <OrbitControls />
+        <OrbitControls makeDefault />
         <Experience />
       </Canvas>
     </main>

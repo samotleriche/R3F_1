@@ -1,8 +1,14 @@
 import { useEffect, useRef, useMemo, React } from "react";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 const CustomObject = () => {
   const geomRef = useRef();
+  const meshRef = useRef();
+
+  useFrame((state, delta) => {
+    meshRef.current.rotation.y += delta * 0.5;
+  });
 
   const verticesCount = 10 * 3;
 
@@ -23,7 +29,7 @@ const CustomObject = () => {
   }, []);
 
   return (
-    <mesh position={[4, 0, 0]}>
+    <mesh ref={meshRef} position={[6, 0, 0]}>
       <bufferGeometry ref={geomRef}>
         <bufferAttribute
           attach="attributes-position"
@@ -32,7 +38,7 @@ const CustomObject = () => {
           array={positions}
         />
       </bufferGeometry>
-      <meshStandardMaterial side={THREE.DoubleSide} color="lime" />
+      <meshStandardMaterial side={THREE.DoubleSide} color="red" />
     </mesh>
   );
 };
